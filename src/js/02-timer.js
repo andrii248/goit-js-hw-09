@@ -5,6 +5,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const refs = {
   startBtn: document.querySelector('button[data-start]'),
+  input: document.querySelector('#datetime-picker'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours'),
   mins: document.querySelector('span[data-minutes]'),
@@ -67,6 +68,7 @@ const timer = {
   },
 
   stop() {
+    refs.input.removeAttribute('disabled');
     clearInterval(intervalId);
     isActiveCountDown = false;
   },
@@ -75,6 +77,7 @@ const timer = {
 function handleStartBtnClick() {
   timer.start();
   refs.startBtn.setAttribute('disabled', 'true');
+  refs.input.setAttribute('disabled', 'true');
 }
 
 flatpickr('#datetime-picker', configOptions);
